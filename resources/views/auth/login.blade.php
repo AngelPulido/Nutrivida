@@ -1,47 +1,74 @@
-<!--
-  This example requires updating your template:
+<x-layouts.app title="Login" metaDescription="Accede de forma segura a tu cuenta NutriVida...">
+  <div class="flex flex-wrap min-h-screen w-full content-center justify-center bg-gray-200 py-10">
+    <div class="flex shadow-md">
+      <div class="flex flex-wrap content-center justify-center rounded-l-md bg-white" style="width: 24rem; height: 32rem;">
+        <div class="w-72">
+          <h1 class="text-xl font-semibold">Bienvenido de nuevo</h1>
+          <small class="text-gray-400">Por favor, ingresa tus datos</small>
 
-  ```
-  <html class="h-full bg-white">
-  <body class="h-full">
-  ```
--->
-<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-      <img class="mx-auto h-10 w-auto" src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
-      <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">Sign in to your account</h2>
-    </div>
-  
-    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-      <form class="space-y-6" action="#" method="POST">
-        <div>
-          <label for="email" class="block text-sm/6 font-medium text-gray-900">Email address</label>
-          <div class="mt-2">
-            <input type="email" name="email" id="email" autocomplete="email" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
-          </div>
-        </div>
-  
-        <div>
-          <div class="flex items-center justify-between">
-            <label for="password" class="block text-sm/6 font-medium text-gray-900">Password</label>
-            <div class="text-sm">
-              <a href="#" class="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</a>
+          @if($errors->has('login'))
+            <div class="mt-4 p-3 text-sm text-red-700 bg-red-100 rounded">
+              {{ $errors->first('login') }}
             </div>
-          </div>
-          <div class="mt-2">
-            <input type="password" name="password" id="password" autocomplete="current-password" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
-          </div>
+          @endif
+
+          <form action="{{ route('login') }}" method="POST" class="mt-4" novalidate>
+            @csrf
+
+            <div class="mb-3">
+              <label class="mb-2 block text-xs font-semibold">Correo electrónico</label>
+              <input
+                type="email"
+                name="correo"
+                value="{{ old('correo') }}"
+                required
+                placeholder="Ingresa tu correo"
+                class="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
+              />
+              @error('correo')
+                <p class="text-red-600 text-xs mt-1">{{ $message }}</p>
+              @enderror
+            </div>
+
+            <div class="mb-3">
+              <label class="mb-2 block text-xs font-semibold">Contraseña</label>
+              <input
+                type="password"
+                name="contraseña"
+                required
+                placeholder="*****"
+                class="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
+              />
+              @error('contraseña')
+                <p class="text-red-600 text-xs mt-1">{{ $message }}</p>
+              @enderror
+            </div>
+
+            <div class="mb-3 flex justify-end">
+              <a href="#" class="text-xs font-semibold text-purple-700">¿Olvidaste tu contraseña?</a>
+            </div>
+
+            <div class="mb-3">
+              <button
+                type="submit"
+                class="mb-1.5 block w-full text-center text-white bg-purple-700 hover:bg-purple-900 px-2 py-1.5 rounded-md"
+              >
+                Iniciar sesión
+              </button>
+            </div>
+
+            <div class="text-center">
+              <span class="text-xs text-gray-400 font-semibold">¿No tienes una cuenta?</span>
+              <a href="{{ route('register') }}" class="text-xs font-semibold text-purple-700">Registrarse</a>
+            </div>
+          </form>
         </div>
-  
-        <div>
-          <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
-        </div>
-      </form>
-  
-      <p class="mt-10 text-center text-sm/6 text-gray-500">
-        Not a member?
-        <a href="#" class="font-semibold text-indigo-600 hover:text-indigo-500">Start a 14 day free trial</a>
-      </p>
+      </div>
+
+      <div class="flex flex-wrap content-center justify-center rounded-r-md" style="width: 24rem; height: 32rem;">
+        <img class="w-full h-full bg-center bg-no-repeat bg-cover rounded-r-md"
+             src="https://i.imgur.com/9l1A4OS.jpeg" alt="Login Image">
+      </div>
     </div>
   </div>
-  
+</x-layouts.app>
