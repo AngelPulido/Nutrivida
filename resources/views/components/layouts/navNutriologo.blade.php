@@ -94,7 +94,7 @@
               <span class="">Profile</span>
             </a>
             <a
-              href=""
+              href="{{route('nutriologo.citas')}}"
               class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out"
             >
               <svg
@@ -110,7 +110,7 @@
               <span class="">Quotes</span>
             </a>
             <a
-              href=""
+              href="{{ route('nutriologo.pacientes') }}"
               class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out"
             >
               <svg
@@ -126,7 +126,7 @@
               <span class="">Patients</span>
             </a>
              <a
-              href=""
+              href="{{ route('nutriologo.planes.index') }}"
               class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out"
             >
               <svg

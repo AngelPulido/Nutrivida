@@ -19,7 +19,7 @@
           </div>
         </div>
 
-        <!-- Barra de herramientas -->
+        <!-- Barra de búsqueda y herramientas -->
         <div class="px-6 py-3 bg-gray-50 border-b flex justify-between items-center">
           <div class="relative w-64">
             <input type="text" placeholder="Buscar usuarios..." 
@@ -30,17 +30,30 @@
               </svg>
             </div>
           </div>
-          <div class="text-sm text-gray-500">
-            Mostrando {{ $users->count() }} usuarios
+          <div class="flex items-center space-x-4">
+            <button class="text-sm text-gray-600 hover:text-indigo-600 flex items-center">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9m-9 4h9m5-4v12m0 0l-4-4m4 4l4-4"></path>
+              </svg>
+              Filtros
+            </button>
+            <button class="text-sm text-gray-600 hover:text-indigo-600 flex items-center">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+              </svg>
+              Exportar
+            </button>
           </div>
         </div>
 
-        <!-- Tabla con diseño moderno -->
+        <!-- Tabla de usuarios -->
         <div class="overflow-x-auto">
           <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
               <tr>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <input type="checkbox" class="rounded text-indigo-600 focus:ring-indigo-500">
+                </th>
                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre</th>
                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Correo</th>
                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rol</th>
@@ -50,7 +63,9 @@
             <tbody class="bg-white divide-y divide-gray-200">
               @foreach($users as $user)
               <tr class="hover:bg-gray-50 transition-colors duration-150">
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $user->id }}</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <input type="checkbox" class="rounded text-indigo-600 focus:ring-indigo-500">
+                </td>
                 <td class="px-6 py-4 whitespace-nowrap">
                   <div class="flex items-center">
                     <div class="flex-shrink-0 h-10 w-10 bg-indigo-100 rounded-full flex items-center justify-center">
@@ -58,42 +73,42 @@
                     </div>
                     <div class="ml-4">
                       <div class="text-sm font-medium text-gray-900">{{ $user->nombre }}</div>
+                      <div class="text-sm text-gray-500">ID: {{ $user->id }}</div>
                     </div>
                   </div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $user->correo }}</td>
                 <td class="px-6 py-4 whitespace-nowrap">
                   <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
-                    {{ $user->rol == 'admin' ? 'bg-purple-100 text-purple-800' : 'bg-green-100 text-green-800' }}">
+                    {{ $user->rol == 'admin' ? 'bg-purple-100 text-purple-800' : 
+                       ($user->rol == 'nutriologo' ? 'bg-blue-100 text-blue-800' : 'bg-green-100 text-green-800') }}">
                     {{ ucfirst($user->rol) }}
                   </span>
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                  <div class="flex space-x-3">
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <div class="flex items-center justify-end space-x-4">
                     <a href="{{ route('dashboard.admin.users.show', $user->id) }}" 
-                       class="text-indigo-600 hover:text-indigo-900 flex items-center">
-                      <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                       class="text-gray-400 hover:text-indigo-600" title="Ver">
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
                       </svg>
-                      Ver
                     </a>
                     <a href="{{ route('dashboard.admin.users.edit', $user->id) }}" 
-                       class="text-green-600 hover:text-green-900 flex items-center">
-                      <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                       class="text-gray-400 hover:text-green-600" title="Editar">
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                       </svg>
-                      Editar
                     </a>
                     <form action="{{ route('dashboard.admin.users.destroy', $user->id) }}" method="POST" class="inline-block">
                       @csrf @method('DELETE')
                       <button type="submit" 
-                              class="text-red-600 hover:text-red-900 flex items-center"
+                              class="text-gray-400 hover:text-red-600"
+                              title="Eliminar"
                               onclick="return confirm('¿Estás seguro de eliminar este usuario?')">
-                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
                         </svg>
-                        Eliminar
                       </button>
                     </form>
                   </div>
@@ -106,11 +121,17 @@
 
         <!-- Pie de tabla -->
         <div class="px-6 py-3 bg-gray-50 border-t flex items-center justify-between">
-          <div class="text-sm text-gray-500">
-            Mostrando {{ $users->firstItem() }} a {{ $users->lastItem() }} de {{ $users->total() }} usuarios
+          <div class="flex items-center space-x-2">
+            <button class="px-3 py-1 text-sm text-gray-600 hover:bg-gray-100 rounded">
+              Anterior
+            </button>
+            <span class="text-sm text-gray-500">Página 1 de 10</span>
+            <button class="px-3 py-1 text-sm text-gray-600 hover:bg-gray-100 rounded">
+              Siguiente
+            </button>
           </div>
-          <div class="flex space-x-2">
-            {{ $users->links() }}
+          <div class="text-sm text-gray-500">
+            Mostrando 1-10 de {{ count($users) }} usuarios
           </div>
         </div>
       </div>

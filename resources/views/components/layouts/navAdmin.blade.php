@@ -92,7 +92,7 @@
               <span class="">Profile</span>
             </a>
             <a
-              href="{{route('dashboard.admin.home')}}"
+              href="{{route('dashboard.admin.index')}}"
               class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out"
             >
               <svg
@@ -108,7 +108,7 @@
               <span class="">User Management</span>
             </a>
             <a
-              href=""
+              href="{{ route('dashboard.admin.statistics') }}"
               class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out"
             >
               <svg

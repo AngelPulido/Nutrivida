@@ -6,6 +6,13 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\StatisticsController;
+use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\PatientController;
+use App\Http\Controllers\NutritionPlanController;
+use App\Http\Controllers\PacienteController;
+
+
 
 
 // RUTAS PÚBLICAS
@@ -38,6 +45,9 @@ Route::prefix('/dashboard/Administrador')
          Route::get('/miperfil', [ProfileController::class, 'myProfile'])
               ->defaults('role', 'admin')
               ->name('dashboard.admin.miperfil');
+          Route::get('/admin/estadisticas', [StatisticsController::class, 'index'])
+               ->defaults('role', 'admin')
+              ->name('dashboard.admin.statistics');
 });
 
 // NUTRIÓLOGO
@@ -60,6 +70,20 @@ Route::prefix('/dashboard/nutriologo')
          Route::get('/miperfil', [ProfileController::class, 'myProfile'])
               ->defaults('role', 'nutriologo')
               ->name('dashboard.nutriologo.miperfil');
+          // Appointments
+    Route::get('/citas', [AppointmentController::class, 'index'])->name('nutriologo.citas');
+    Route::put('/citas/{id}', [AppointmentController::class, 'update'])->name('nutriologo.citas.update');
+    
+    // Patients
+    Route::get('/pacientes', [PatientController::class, 'index'])->name('nutriologo.pacientes');
+    
+    // Nutrition Plans
+    Route::get('/planes-nutricionales', [NutritionPlanController::class, 'index'])->name('nutriologo.planes.index');
+    Route::get('/planes-nutricionales/crear', [NutritionPlanController::class, 'create'])->name('nutriologo.planes.create');
+    Route::post('/planes-nutricionales', [NutritionPlanController::class, 'store'])->name('nutriologo.planes.store');
+    Route::get('/planes-nutricionales/{id}', [NutritionPlanController::class, 'show'])->name('nutriologo.planes.show');
+    Route::get('/planes-nutricionales/{id}/editar', [NutritionPlanController::class, 'edit'])->name('nutriologo.planes.edit');
+    Route::put('/planes-nutricionales/{id}', [NutritionPlanController::class, 'update'])->name('nutriologo.planes.update');
 });
 
 Route::prefix('/dashboard/paciente')
@@ -81,6 +105,17 @@ Route::prefix('/dashboard/paciente')
          Route::get('/miperfil', [ProfileController::class, 'myProfile'])
               ->defaults('role', 'paciente')
               ->name('dashboard.paciente.miperfil');
+
+              // Planes nutricionales
+          Route::get('/planes', [PacienteController::class, 'misPlanes'])->name('paciente.planes');
+          
+          // Citas
+          Route::get('/citas', [PacienteController::class, 'misCitas'])->name('paciente.citas');
+          Route::post('/citas', [PacienteController::class, 'solicitarCita'])->name('paciente.citas.store');
+          
+          // Progreso
+          Route::get('/progreso', [PacienteController::class, 'miProgreso'])->name('paciente.progreso');
+          Route::post('/progreso', [PacienteController::class, 'registrarProgreso'])->name('paciente.progreso.store');
 });
 
 Route::prefix('/dashboard/Administrador')              // cambia 'administrador' a 'admin'
@@ -88,12 +123,15 @@ Route::prefix('/dashboard/Administrador')              // cambia 'administrador'
      ->group(function () {
          // Home del dashboard (redirige al listado de usuarios)
          Route::get('/', fn() => redirect()->route('dashboard.admin.users.index'))
-              ->name('dashboard.admin.home');  // antes dashboard.administrador.home
+              ->name('dashboard.admin.index');  // antes dashboard.administrador.home
 
          // CRUD de usuarios
          Route::resource('users', AdminUserController::class, [
              'as' => 'dashboard.admin'        // antes 'dashboard.administrador'
          ]);
      });
+
+          
+     
 
 

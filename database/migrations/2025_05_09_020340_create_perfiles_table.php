@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('perfiles', function (Blueprint $table) {
             $table->id();
             $table->foreignId('usuario_id')->constrained('usuarios')->onDelete('cascade');
-            $table->string('teléfono', 20)->nullable();
+            $table->string('telefono', 20)->nullable();
             $table->integer('edad')->nullable();
-            $table->string('género', 10)->nullable();
-            $table->text('dirección')->nullable();
+            $table->string('genero', 10)->nullable();
+            $table->text('direccion')->nullable();
             $table->integer('altura_cm')->nullable();
             $table->integer('peso_kg')->nullable();
             $table->string('especialidad', 100)->nullable();
