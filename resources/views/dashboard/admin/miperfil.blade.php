@@ -43,7 +43,7 @@
                         
                         <div>
                             <h3 class="text-sm font-medium text-gray-500">Edad</h3>
-                            <p class="text-gray-800">{{ optional($user->perfil)->edad ?? '-' }}</p>
+                            <p class="text-gray-800">{{ optional($user->perfil)->edad ?? '-' }} Años</p>
                         </div>
                         
                         <div>
