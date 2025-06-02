@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class AdminUserController extends Controller
 {
@@ -16,26 +17,60 @@ class AdminUserController extends Controller
         $this->token   = session('token');
     }
 
-    /** Listar todos los usuarios */
-    public function index()
+    /** Listar todos los usuarios con paginación */
+    public function index(Request $request)
     {
+        // 1) Traemos TODOS los usuarios desde la API
         $resp = Http::withToken($this->token)
-                ->get("{$this->apiBase}/users");
+                    ->get("{$this->apiBase}/users");
 
         abort_unless($resp->successful(), $resp->status(), $resp->json('mensaje'));
 
-        $users = array_map(fn($u) => (object)$u, $resp->json());
+        // 2) Convertimos cada usuario a objeto y le anexamos perfil
+        $allUsers = collect($resp->json())->map(function($u) {
+            $user = (object)$u;
+            $user->perfil = (object)[
+                'nombre'       => $u['nombre']       ?? null,
+                'avatar'       => $u['avatar']       ?? null,
+                'telefono'     => $u['teléfono']     ?? null,
+                'edad'         => $u['edad']         ?? null,
+                'genero'       => $u['género']       ?? null,
+                'direccion'    => $u['dirección']    ?? null,
+                'altura_cm'    => $u['altura_cm']    ?? null,
+                'peso_kg'      => $u['peso_kg']      ?? null,
+                'especialidad' => $u['especialidad'] ?? null,
+            ];
+            return $user;
+        })->toArray(); // convertimos a array indexado
 
+        // 3) Parámetros de paginación
+        //    - Obtener página actual (por query string ?page=)
+        $page    = $request->input('page', 1);
+        //    - Definir cuántos ítems queremos por página
+        $perPage = 10;
+        //    - Calcular offset
+        $offset  = ($page - 1) * $perPage;
+
+        // 4) Cortar el array completo para quedarnos SOLO con los usuarios de la página actual
+        $currentPageItems = array_slice($allUsers, $offset, $perPage);
+
+        // 5) Construir un LengthAwarePaginator
+        $paginator = new LengthAwarePaginator(
+            $currentPageItems,           // items de la página actual
+            count($allUsers),            // total de ítems en la colección original
+            $perPage,                    // ítems por página
+            $page,                       // página actual
+            [
+                'path'  => $request->url(),       // URL base 
+                'query' => $request->query(),     // Mantener otros parámetros (si existieran)
+            ]
+        );
+
+        // 6) Pasar el paginador a la vista
         return view('dashboard.admin.users.index', [
-            'users' => $users
+            'users' => $paginator
         ]);
-    }
-
-    /** Muestra formulario de creación */
-    public function create()
-    {
-        return view('dashboard.admin.users.create');
-    }
+    }   
 
     /** Almacena un nuevo usuario */
     public function store(Request $request)
@@ -72,7 +107,7 @@ class AdminUserController extends Controller
     public function show($id)
     {
         $resp = Http::withToken($this->token)
-                    ->get("{$this->apiBase}/users/{$id}");
+                ->get("{$this->apiBase}/users/{$id}");
 
         abort_unless($resp->successful(), $resp->status(), $resp->json('mensaje'));
 
@@ -82,9 +117,20 @@ class AdminUserController extends Controller
         $user = (object)$userData;
         
         // Manejar el perfil de forma segura
+        $defaultProfile = [
+            'telefono' => null,
+            'edad' => null,
+            'genero' => null,
+            'direccion' => null,
+            'altura_cm' => null,
+            'peso_kg' => null,
+            'especialidad' => null,
+            'avatar' => null, // Añadir campo para el avatar
+        ];
+        
         $perfil = isset($userData['perfil']) && is_array($userData['perfil']) ? 
-                (object)$userData['perfil'] : 
-                (object)['genero' => null, 'telefono' => null, 'edad' => null, 'direccion' => null, 'altura_cm' => null, 'peso_kg' => null, 'especialidad' => null];
+                (object)array_merge($defaultProfile, $userData['perfil']) : 
+                (object)$defaultProfile;
 
         return view('dashboard.admin.users.show', [
             'user' => $user,
@@ -172,5 +218,9 @@ class AdminUserController extends Controller
         return redirect()
             ->route('dashboard.admin.users.index')
             ->with('success', 'Usuario eliminado correctamente');
+    }
+     public function create()
+    {
+        return view('dashboard.admin.users.create');
     }
 }

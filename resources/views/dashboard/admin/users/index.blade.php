@@ -1,7 +1,9 @@
 <!-- resources/views/dashboard/administrador/users/index.blade.php -->
 <x-layouts.app title="Usuarios" metaDescription="Gestión de usuarios">
   <div class="flex min-h-screen bg-gray-50">
-    <aside class="w-64"><x-layouts.navAdmin /></aside>
+    <aside class="w-64 h-screen">
+    <x-layouts.navAdmin />
+  </aside>
     <main class="flex-1 p-8 overflow-y-auto">
       <div class="max-w-6xl mx-auto bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
         
@@ -37,12 +39,13 @@
               </svg>
               Filtros
             </button>
-            <button class="text-sm text-gray-600 hover:text-indigo-600 flex items-center">
+            <a href="{{ route('admin.users.export') }}" 
+              class="text-sm text-gray-600 hover:text-indigo-600 flex items-center">
               <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
               </svg>
-              Exportar
-            </button>
+              Exportar a Excel
+            </a>
           </div>
         </div>
 
@@ -51,9 +54,7 @@
           <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
               <tr>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  <input type="checkbox" class="rounded text-indigo-600 focus:ring-indigo-500">
-                </th>
+                <th></th>
                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre</th>
                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Correo</th>
                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rol</th>
@@ -64,19 +65,25 @@
               @foreach($users as $user)
               <tr class="hover:bg-gray-50 transition-colors duration-150">
                 <td class="px-6 py-4 whitespace-nowrap">
-                  <input type="checkbox" class="rounded text-indigo-600 focus:ring-indigo-500">
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
                   <div class="flex items-center">
-                    <div class="flex-shrink-0 h-10 w-10 bg-indigo-100 rounded-full flex items-center justify-center">
-                      <span class="text-indigo-600 font-medium">{{ substr($user->nombre, 0, 1) }}</span>
-                    </div>
+                    @if($user->perfil->avatar)
+                      <div class="flex-shrink-0 h-10 w-10 rounded-full overflow-hidden">
+                        <img src="{{ asset('storage/avatars/' . $user->perfil->avatar) }}" 
+                            alt="Foto de {{ $user->nombre }}"
+                            class="h-full w-full object-cover">
+                      </div>
+                    @else
+                      <div class="flex-shrink-0 h-10 w-10 bg-indigo-100 rounded-full flex items-center justify-center">
+                        <span class="text-indigo-600 font-medium">{{ substr($user->nombre, 0, 1) }}</span>
+                      </div>
+                    @endif
                     <div class="ml-4">
                       <div class="text-sm font-medium text-gray-900">{{ $user->nombre }}</div>
                       <div class="text-sm text-gray-500">ID: {{ $user->id }}</div>
                     </div>
                   </div>
                 </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $user->nombre }}</td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $user->correo }}</td>
                 <td class="px-6 py-4 whitespace-nowrap">
                   <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
@@ -120,18 +127,43 @@
         </div>
 
         <!-- Pie de tabla -->
+        <!-- Pie de tabla con paginación dinámica -->
         <div class="px-6 py-3 bg-gray-50 border-t flex items-center justify-between">
           <div class="flex items-center space-x-2">
-            <button class="px-3 py-1 text-sm text-gray-600 hover:bg-gray-100 rounded">
-              Anterior
-            </button>
-            <span class="text-sm text-gray-500">Página 1 de 10</span>
-            <button class="px-3 py-1 text-sm text-gray-600 hover:bg-gray-100 rounded">
-              Siguiente
-            </button>
+            {{-- Botón Anterior --}}
+            @if ($users->onFirstPage())
+              <span class="px-3 py-1 text-sm text-gray-400 cursor-not-allowed">Anterior</span>
+            @else
+              <a href="{{ $users->previousPageUrl() }}"
+                class="px-3 py-1 text-sm text-gray-600 hover:bg-gray-100 rounded">
+                Anterior
+              </a>
+            @endif
+
+            {{-- Texto Página X de Y --}}
+            <span class="text-sm text-gray-500">
+              Página {{ $users->currentPage() }} de {{ $users->lastPage() }}
+            </span>
+
+            {{-- Botón Siguiente --}}
+            @if ($users->hasMorePages())
+              <a href="{{ $users->nextPageUrl() }}"
+                class="px-3 py-1 text-sm text-gray-600 hover:bg-gray-100 rounded">
+                Siguiente
+              </a>
+            @else
+              <span class="px-3 py-1 text-sm text-gray-400 cursor-not-allowed">Siguiente</span>
+            @endif
           </div>
+
+          {{-- Texto “Mostrando X-Y de Z usuarios” --}}
           <div class="text-sm text-gray-500">
-            Mostrando 1-10 de {{ count($users) }} usuarios
+            @php
+              $start = ($users->currentPage() - 1) * $users->perPage() + 1;
+              $end   = min($users->currentPage() * $users->perPage(), $users->total());
+            @endphp
+
+            Mostrando {{ $start }}-{{ $end }} de {{ $users->total() }} usuarios
           </div>
         </div>
       </div>

@@ -11,9 +11,13 @@ use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\NutritionPlanController;
 use App\Http\Controllers\PacienteController;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\UsersExport;
 
 
-
+Route::get('/admin/users/export', function () {
+    return Excel::download(new UsersExport, 'usuarios.xlsx');
+})->name('admin.users.export');
 
 // RUTAS PÚBLICAS
 Route::get('/login',    [AuthController::class, 'showLoginForm'])->name('login.form');

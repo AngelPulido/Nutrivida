@@ -9,12 +9,12 @@ class AppointmentController extends Controller
     public function index()
     {
         try {
-            $nutriologoId = auth()->id();
+            // $nutriologoId = auth()->id();
             
             $response = Http::withToken(session('token'))
                 ->timeout(30)
                 ->get(config('app.api_url').'/appointments', [
-                    'nutriologo_id' => $nutriologoId
+                    // 'nutriologo_id' => $nutriologoId
                 ]);
     
             if (!$response->successful()) {
@@ -41,7 +41,7 @@ class AppointmentController extends Controller
             ]);
     
         } catch (\Exception $e) {
-            \Log::error('CitasController Error: '.$e->getMessage());
+            // Log::error('CitasController Error: '.$e->getMessage());
             return view('dashboard.nutriologo.citas', [
                 'appointments' => [],
                 'error' => 'Error al cargar citas'

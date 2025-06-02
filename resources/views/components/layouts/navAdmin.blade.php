@@ -3,7 +3,7 @@
 <body class="font-poppins antialiased">
     <div
       id="view"
-      class="h-full w-screen flex flex-row"
+      class="w-screen flex flex-row h-screen"
       x-data="{ sidenav: true }"
     >
       <button

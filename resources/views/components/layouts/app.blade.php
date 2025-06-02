@@ -9,7 +9,7 @@
     @vite('resources/css/app.css', 'resources/js/app.js')
 
 </head>
-<body>
+<body class="h-screen">
     
     {{-- <x-layouts.nav class="nav"></x-layaouts>
     @if (session('status'))
