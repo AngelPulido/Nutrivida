@@ -1,6 +1,6 @@
 <x-layouts.app title="Registro" metaDescription="Crea una cuenta para acceder a tus planes, citas y funciones de NutriVida.">
 
-    <div class="flex flex-wrap min-h-screen w-full content-center justify-center bg-gray-200 py-10">
+    <div class="flex flex-wrap min-h-screen w-full content-center justify-center bg-green-50 py-10">
   
       <div class="flex shadow-md">
   
@@ -14,8 +14,8 @@
           <div class="w-72">
   
             <!-- Encabezado -->
-            <h1 class="text-xl font-semibold">Crear cuenta</h1>
-            <small class="text-gray-400">Completa los siguientes campos</small>
+            <h1 class="text-xl font-semibold text-green-800">Crear cuenta</h1>
+            <small class="text-green-600">Completa los siguientes campos</small>
 
             {{-- Mensajes de error o éxito --}}
             @if($errors->has('register'))
@@ -34,30 +34,30 @@
               @csrf
   
               <div class="mb-3">
-                <label class="mb-2 block text-xs font-semibold">Nombre completo</label>
+                <label class="mb-2 block text-xs font-semibold text-green-700">Nombre completo</label>
                 <input type="text" name="nombre" value="{{ old('nombre') }}" required placeholder="Ingresa tu nombre"
-                       class="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500" />
+                       class="block w-full rounded-md border border-green-300 focus:border-green-600 focus:outline-none focus:ring-1 focus:ring-green-600 py-1 px-1.5 text-gray-600" />
                 @error('nombre')<p class="text-red-600 text-xs mt-1">{{ $message }}</p>@enderror
               </div>
   
               <div class="mb-3">
-                <label class="mb-2 block text-xs font-semibold">Correo electrónico</label>
+                <label class="mb-2 block text-xs font-semibold text-green-700">Correo electrónico</label>
                 <input type="email" name="correo" value="{{ old('correo') }}" required placeholder="ejemplo@correo.com"
-                       class="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500" />
+                       class="block w-full rounded-md border border-green-300 focus:border-green-600 focus:outline-none focus:ring-1 focus:ring-green-600 py-1 px-1.5 text-gray-600" />
                 @error('correo')<p class="text-red-600 text-xs mt-1">{{ $message }}</p>@enderror
               </div>
   
               <div class="mb-3">
-                <label class="mb-2 block text-xs font-semibold">Contraseña</label>
+                <label class="mb-2 block text-xs font-semibold text-green-700">Contraseña</label>
                 <input type="password" name="contraseña" required placeholder="********"
-                       class="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500" />
+                       class="block w-full rounded-md border border-green-300 focus:border-green-600 focus:outline-none focus:ring-1 focus:ring-green-600 py-1 px-1.5 text-gray-600" />
                 @error('contraseña')<p class="text-red-600 text-xs mt-1">{{ $message }}</p>@enderror
               </div>
   
               <div class="mb-3">
-                <label class="mb-2 block text-xs font-semibold">Rol</label>
+                <label class="mb-2 block text-xs font-semibold text-green-700">Rol</label>
                 <select name="rol" required
-                        class="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1.5 px-2 text-gray-500">
+                        class="block w-full rounded-md border border-green-300 focus:border-green-600 focus:outline-none focus:ring-1 focus:ring-green-600 py-1.5 px-2 text-gray-600">
                   <option value="">Selecciona un rol</option>
                   <option value="paciente" {{ old('rol')=='paciente' ? 'selected' : '' }}>Paciente</option>
                   <option value="nutriologo" {{ old('rol')=='nutriologo' ? 'selected' : '' }}>Nutriólogo</option>
@@ -67,15 +67,15 @@
   
               <div class="mb-3">
                 <button type="submit"
-                        class="mb-1.5 block w-full text-center text-white bg-purple-700 hover:bg-purple-900 px-2 py-1.5 rounded-md">
+                        class="mb-1.5 block w-full text-center text-white bg-green-600 hover:bg-green-700 px-2 py-1.5 rounded-md transition-colors">
                   Registrarse
                 </button>
               </div>
   
               <!-- Footer -->
               <div class="text-center">
-                <span class="text-xs text-gray-400 font-semibold">¿Ya tienes una cuenta?</span>
-                <a href="{{ route('login.form') }}" class="text-xs font-semibold text-purple-700">Iniciar sesión</a>
+                <span class="text-xs text-green-600 font-semibold">¿Ya tienes una cuenta?</span>
+                <a href="{{ route('login.form') }}" class="text-xs font-semibold text-green-600 hover:text-green-800">Iniciar sesión</a>
               </div>
             </form>
   

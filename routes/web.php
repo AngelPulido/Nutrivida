@@ -9,7 +9,7 @@ use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\StatisticsController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\PatientController;
-use App\Http\Controllers\NutritionPlanController;
+use App\Http\Controllers\PlanNutricionalController;
 use App\Http\Controllers\PacienteController;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\UsersExport;
@@ -75,20 +75,12 @@ Route::prefix('/dashboard/nutriologo')
               ->defaults('role', 'nutriologo')
               ->name('dashboard.nutriologo.miperfil');
           // Appointments
-    Route::get('/citas', [AppointmentController::class, 'index'])->name('nutriologo.citas');
-    Route::put('/citas/{id}', [AppointmentController::class, 'update'])->name('nutriologo.citas.update');
-    
-    // Patients
-    Route::get('/pacientes', [PatientController::class, 'index'])->name('nutriologo.pacientes');
-    
-    // Nutrition Plans
-    Route::get('/planes-nutricionales', [NutritionPlanController::class, 'index'])->name('nutriologo.planes.index');
-    Route::get('/planes-nutricionales/crear', [NutritionPlanController::class, 'create'])->name('nutriologo.planes.create');
-    Route::post('/planes-nutricionales', [NutritionPlanController::class, 'store'])->name('nutriologo.planes.store');
-    Route::get('/planes-nutricionales/{id}', [NutritionPlanController::class, 'show'])->name('nutriologo.planes.show');
-    Route::get('/planes-nutricionales/{id}/editar', [NutritionPlanController::class, 'edit'])->name('nutriologo.planes.edit');
-    Route::put('/planes-nutricionales/{id}', [NutritionPlanController::class, 'update'])->name('nutriologo.planes.update');
-});
+     // Citas
+         Route::get('/citas', [AppointmentController::class, 'index'])->name('nutriologo.citas');
+         Route::get('/citas/data', [AppointmentController::class, 'getAppointments'])->name('nutriologo.citas.data');
+         Route::put('/citas/{id}', [AppointmentController::class, 'update'])->name('nutriologo.citas.update');
+         
+    });
 
 Route::prefix('/dashboard/paciente')
      ->middleware(EnsureApiToken::class)

@@ -1,6 +1,6 @@
 {{-- resources/views/dashboard/admin/users/create.blade.php --}}
 <x-layouts.app title="Nuevo Usuario" metaDescription="Crear nuevo usuario">
-  <div class="min-h-screen bg-gray-50 flex">
+  <div class="min-h-screen bg-green-50 flex">
     <aside class="w-64 bg-white shadow-sm"><x-layouts.navAdmin /></aside>
 
     <main class="flex-1 p-8 overflow-y-auto">
@@ -8,21 +8,21 @@
         {{-- Encabezado --}}
         <div class="flex items-center justify-between">
           <div class="flex items-center">
-            <a href="{{ route('dashboard.admin.users.index') }}" class="text-gray-500 hover:text-gray-700 transition-colors mr-4">
+            <a href="{{ route('dashboard.admin.users.index') }}" class="text-green-600 hover:text-green-800 transition-colors mr-4">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
               </svg>
             </a>
             <div>
-              <h1 class="text-2xl font-semibold text-gray-800">Crear nuevo usuario</h1>
-              <p class="mt-1 text-sm text-gray-500">Complete la información requerida para registrar un nuevo usuario</p>
+              <h1 class="text-2xl font-semibold text-green-800">Crear nuevo usuario</h1>
+              <p class="mt-1 text-sm text-green-600">Complete la información requerida para registrar un nuevo usuario</p>
             </div>
           </div>
         </div>
 
         {{-- Errores de validación --}}
         @if($errors->any())
-          <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded">
+          <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded-lg shadow-sm">
             <div class="flex">
               <div class="flex-shrink-0">
                 <svg class="h-5 w-5 text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -48,30 +48,30 @@
           @csrf
 
           {{-- Datos básicos --}}
-          <div class="bg-white rounded-lg shadow border border-gray-200">
-            <div class="px-6 py-4 border-b border-gray-200">
-              <h2 class="text-lg font-medium text-gray-800">Datos básicos</h2>
-              <p class="mt-1 text-sm text-gray-500">Información principal de la cuenta.</p>
+          <div class="bg-white rounded-lg shadow-md border border-green-100">
+            <div class="px-6 py-4 border-b border-green-100 bg-green-50 rounded-t-lg">
+              <h2 class="text-lg font-medium text-green-800">Datos básicos</h2>
+              <p class="mt-1 text-sm text-green-600">Información principal de la cuenta.</p>
             </div>
             <div class="px-6 py-6 space-y-6">
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre completo *</label>
+                  <label for="nombre" class="block text-sm font-medium text-green-700">Nombre completo *</label>
                   <input type="text" name="nombre" id="nombre" value="{{ old('nombre') }}" required
-                         class="mt-1 w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm py-2 px-3">
+                         class="mt-1 w-full rounded-md border-green-200 shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm py-2 px-3 transition duration-150 ease-in-out">
                 </div>
                 <div>
-                  <label for="correo" class="block text-sm font-medium text-gray-700">Correo electrónico *</label>
+                  <label for="correo" class="block text-sm font-medium text-green-700">Correo electrónico *</label>
                   <input type="email" name="correo" id="correo" value="{{ old('correo') }}" required
-                         class="mt-1 w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm py-2 px-3">
+                         class="mt-1 w-full rounded-md border-green-200 shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm py-2 px-3 transition duration-150 ease-in-out">
                 </div>
               </div>
               
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label for="rol" class="block text-sm font-medium text-gray-700">Rol *</label>
+                  <label for="rol" class="block text-sm font-medium text-green-700">Rol *</label>
                   <select id="rol" name="rol" required
-                          class="mt-1 w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm py-2 px-3">
+                          class="mt-1 w-full rounded-md border-green-200 shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm py-2 px-3 transition duration-150 ease-in-out">
                     <option value="">Seleccionar rol...</option>
                     <option value="admin" {{ old('rol') == 'admin' ? 'selected' : '' }}>Administrador</option>
                     <option value="nutriologo" {{ old('rol') == 'nutriologo' ? 'selected' : '' }}>Nutriólogo</option>
@@ -79,10 +79,10 @@
                   </select>
                 </div>
                 <div>
-                  <label for="contraseña" class="block text-sm font-medium text-gray-700">Contraseña *</label>
+                  <label for="contraseña" class="block text-sm font-medium text-green-700">Contraseña *</label>
                   <input type="password" name="contraseña" id="contraseña" required
-                         class="mt-1 w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm py-2 px-3">
-                  <p class="mt-1 text-xs text-gray-500">Mínimo 8 caracteres</p>
+                         class="mt-1 w-full rounded-md border-green-200 shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm py-2 px-3 transition duration-150 ease-in-out">
+                  <p class="mt-1 text-xs text-green-500">Mínimo 8 caracteres</p>
                 </div>
               </div>
             </div>
@@ -90,9 +90,11 @@
 
           {{-- Botones de acción --}}
           <div class="flex justify-end space-x-4 pt-4">
-            
+            <a href="{{ route('dashboard.admin.users.index') }}" class="px-4 py-2 border border-green-600 text-green-600 rounded-md hover:bg-green-50 transition-colors duration-150">
+              Cancelar
+            </a>
             <button type="submit"
-                    class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 shadow-sm">
               Crear usuario
             </button>
           </div>
@@ -100,5 +102,4 @@
       </div>
     </main>
   </div>
-
 </x-layouts.app>

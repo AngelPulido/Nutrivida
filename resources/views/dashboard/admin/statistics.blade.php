@@ -1,8 +1,7 @@
 <x-layouts.app title="Estadísticas" metaDescription="Estadísticas del sistema">
-  @push('styles')
     <style>
       .gradient-bg {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #34D399 0%, #10B981 100%);
       }
       .chart-card {
         transition: all 0.3s ease;
@@ -12,7 +11,6 @@
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
       }
     </style>
-  @endpush
 
   <div class="flex min-h-screen bg-gray-50">
     <aside class="w-64 bg-white shadow-md"><x-layouts.navAdmin /></aside>
@@ -24,7 +22,7 @@
           <div class="flex items-center justify-between">
             <div>
               <h1 class="text-3xl font-bold text-white">Panel de Estadísticas</h1>
-              <p class="mt-2 text-indigo-100">Resumen completo del sistema</p>
+              <p class="mt-2 text-gray-200">Resumen completo del sistema</p>
             </div>
             <div class="text-white">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -41,7 +39,7 @@
           <div class="bg-white rounded-xl shadow-md overflow-hidden chart-card">
             <div class="p-6">
               <div class="flex items-center">
-                <div class="p-3 rounded-full bg-indigo-100 text-indigo-600">
+                <div class="p-3 rounded-full bg-green-100 text-green-600">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                           d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
@@ -64,7 +62,7 @@
           <div class="bg-white rounded-xl shadow-md overflow-hidden chart-card">
             <div class="p-6">
               <div class="flex items-center">
-                <div class="p-3 rounded-full bg-blue-100 text-blue-600">
+                <div class="p-3 rounded-full bg-yellow-100 text-yellow-600">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                           d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -109,7 +107,7 @@
                       ? round(($totalMensajes / $totalUsuarios) * 100)
                       : 0;
                   @endphp
-                  <div class="text-5xl font-bold text-green-500">
+                  <div class="text-5xl font-bold text-green-600">
                     {{ $interactionRate }}%
                   </div>
                   <p class="mt-2 text-gray-500">Tasa de interacción</p>
@@ -122,7 +120,7 @@
           <div class="bg-white rounded-xl shadow-md overflow-hidden chart-card">
             <div class="p-6">
               <div class="flex items-center">
-                <div class="p-3 rounded-full bg-purple-100 text-purple-600">
+                <div class="p-3 rounded-full bg-teal-100 text-teal-600">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                           d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
@@ -189,8 +187,8 @@
                 <tr>
                   <td class="px-6 py-4 whitespace-nowrap">
                     <div class="flex items-center">
-                      <div class="flex-shrink-0 h-10 w-10 bg-indigo-100 rounded-full flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <div class="flex-shrink-0 h-10 w-10 bg-green-100 rounded-full flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                         </svg>
@@ -234,8 +232,8 @@
                 <tr>
                   <td class="px-6 py-4 whitespace-nowrap">
                     <div class="flex items-center">
-                      <div class="flex-shrink-0 h-10 w-10 bg-blue-100 rounded-full flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <div class="flex-shrink-0 h-10 w-10 bg-yellow-100 rounded-full flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                         </svg>
@@ -277,8 +275,8 @@
                 <tr>
                   <td class="px-6 py-4 whitespace-nowrap">
                     <div class="flex items-center">
-                      <div class="flex-shrink-0 h-10 w-10 bg-purple-100 rounded-full flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <div class="flex-shrink-0 h-10 w-10 bg-teal-100 rounded-full flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                         </svg>
@@ -323,242 +321,240 @@
     </main>
   </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const colors = {
-      primary: '#6366F1',
-      secondary: '#8B5CF6',
-      success: '#10B981',
-      danger: '#EF4444',
-      warning: '#F59E0B',
-      info: '#3B82F6',
-      light: '#F3F4F6',
-      dark: '#1F2937'
-    };
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const colors = {
+        primary: '#10B981',   // verde
+        secondary: '#3B82F6', // azul para mayor contraste
+        success: '#10B981',
+        danger: '#EF4444',
+        warning: '#FBBF24',
+        info: '#3B82F6',
+        light: '#F3F4F6',
+        dark: '#1F2937'
+      };
 
-    // Función para mostrar mensaje alternativo cuando no hay suficientes datos
-    function showFallbackMessage(canvas, value, color, label) {
-      canvas.parentNode.innerHTML = `
-        <div class="flex flex-col items-center justify-center h-full">
-          <span class="text-3xl font-bold text-${color}-600">${value}</span>
-          <span class="text-sm text-gray-500">${label}</span>
-        </div>
-      `;
-    }
+      // Función para mostrar mensaje alternativo cuando no hay suficientes datos
+      function showFallbackMessage(canvas, value, color, label) {
+        canvas.parentNode.innerHTML = `
+          <div class="flex flex-col items-center justify-center h-full">
+            <span class="text-3xl font-bold text-${color}-600">${value}</span>
+            <span class="text-sm text-gray-500">${label}</span>
+          </div>
+        `;
+      }
 
-    // ─────────────────────────────────────────────────────────────────────
-    // 1) Gráfica de Distribución de Usuarios (Doughnut)
-    const userDistributionCtx = document.getElementById('userDistributionChart')?.getContext('2d');
-    if (userDistributionCtx) {
-      new Chart(userDistributionCtx, {
-        type: 'doughnut',
-        data: {
-          labels: ['Administradores', 'Nutriólogos', 'Pacientes'],
-          datasets: [{
-            data: [
-              {{ $stats['usuarios']['admin'] ?? 0 }},
-              {{ $stats['usuarios']['nutriologo'] ?? 0 }},
-              {{ $stats['usuarios']['paciente'] ?? 0 }}
-            ],
-            backgroundColor: [colors.primary, colors.secondary, colors.success],
-            borderWidth: 0
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          cutout: '70%',
-          plugins: {
-            legend: {
-              position: 'bottom',
-              labels: {
-                padding: 20,
-                usePointStyle: true,
-                pointStyle: 'circle'
+      // ─────────────────────────────────────────────────────────────────────
+      // 1) Gráfica de Distribución de Usuarios (Doughnut)
+      const userDistributionCtx = document.getElementById('userDistributionChart')?.getContext('2d');
+      if (userDistributionCtx) {
+        new Chart(userDistributionCtx, {
+          type: 'doughnut',
+          data: {
+            labels: ['Administradores', 'Nutriólogos', 'Pacientes'],
+            datasets: [{
+              data: [
+                {{ $stats['usuarios']['admin'] ?? 0 }},
+                {{ $stats['usuarios']['nutriologo'] ?? 0 }},
+                {{ $stats['usuarios']['paciente'] ?? 0 }}
+              ],
+              // colores con mayor contraste
+              backgroundColor: [colors.primary, colors.info, colors.warning],
+              borderWidth: 0
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: '70%',
+            plugins: {
+              legend: {
+                position: 'bottom',
+                labels: {
+                  padding: 20,
+                  usePointStyle: true,
+                  pointStyle: 'circle'
+                }
               }
             }
           }
+        });
+      }
+
+      // ─────────────────────────────────────────────────────────────────────
+      // 2) Gráfica de Actividad Mensual
+      const monthlyActivityCtx = document.getElementById('monthlyActivityChart')?.getContext('2d');
+      const usuarioLabels = @json(array_column($stats['usuarios_por_mes'] ?? [], 'mes'));
+      const usuarioTotals = @json(array_column($stats['usuarios_por_mes'] ?? [], 'total'));
+
+      if (monthlyActivityCtx && usuarioLabels.length > 0) {
+        new Chart(monthlyActivityCtx, {
+          type: 'line',
+          data: {
+            labels: usuarioLabels,
+            datasets: [
+              {
+                label: 'Usuarios nuevos',
+                data: usuarioTotals,
+                borderColor: colors.primary,
+                backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                tension: 0.3,
+                fill: true
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: 'top',
+              }
+            },
+            scales: {
+              y: {
+                beginAtZero: true,
+                grid: {
+                  drawBorder: false
+                }
+              },
+              x: {
+                grid: {
+                  display: false
+                }
+              }
+            }
+          }
+        });
+      } else if (monthlyActivityCtx) {
+        monthlyActivityCtx.canvas.parentNode.innerHTML = '<p class="text-center text-gray-500 mt-10">No hay datos de usuarios recientes.</p>';
+      }
+
+      // ─────────────────────────────────────────────────────────────────────
+      // 3) Mini Charts de las tarjetas
+      // ── 3.1) Usuarios Mini Chart
+      const usersChartCanvas = document.getElementById('usersChart');
+      if (usersChartCanvas) {
+        const lastThreeUsuarioLabels = usuarioLabels.slice(-3);
+        const lastThreeUsuariosData = usuarioTotals.slice(-3);
+
+        if (lastThreeUsuarioLabels.length > 1 && lastThreeUsuariosData.length > 1) {
+          new Chart(usersChartCanvas.getContext('2d'), {
+            type: 'line',
+            data: {
+              labels: lastThreeUsuarioLabels,
+              datasets: [{
+                data: lastThreeUsuariosData,
+                borderColor: colors.primary,
+                backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                tension: 0.4,
+                fill: true,
+                borderWidth: 2,
+                pointRadius: 0
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: { display: false }
+              },
+              scales: {
+                x: { display: false },
+                y: { display: false }
+              }
+            }
+          });
+        } else {
+          const currentMonthTotal = lastThreeUsuariosData[lastThreeUsuariosData.length - 1] || 0;
+          showFallbackMessage(usersChartCanvas, currentMonthTotal, 'green', 'este mes');
         }
-      });
-    }
+      }
 
-    // ─────────────────────────────────────────────────────────────────────
-    // 2) Gráfica de Actividad Mensual
-    const monthlyActivityCtx = document.getElementById('monthlyActivityChart')?.getContext('2d');
-    const usuarioLabels = @json(array_column($stats['usuarios_por_mes'] ?? [], 'mes'));
-    const usuarioTotals = @json(array_column($stats['usuarios_por_mes'] ?? [], 'total'));
+      // ── 3.2) Citas Mini Chart
+      const appointmentsChartCanvas = document.getElementById('appointmentsChart');
+      const citasPorMesTotals = @json(array_column($stats['citas']['por_mes'] ?? [], 'total'));
+      const citasPorMesLabels = @json(array_column($stats['citas']['por_mes'] ?? [], 'mes'));
 
-    if (monthlyActivityCtx && usuarioLabels.length > 0) {
-      new Chart(monthlyActivityCtx, {
-        type: 'line',
-        data: {
-          labels: usuarioLabels,
-          datasets: [
-            {
-              label: 'Usuarios nuevos',
-              data: usuarioTotals,
-              borderColor: colors.primary,
-              backgroundColor: 'rgba(99, 102, 241, 0.1)',
-              tension: 0.3,
-              fill: true
-            }
-          ]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: {
-              position: 'top',
-            }
-          },
-          scales: {
-            y: {
-              beginAtZero: true,
-              grid: {
-                drawBorder: false
-              }
+      if (appointmentsChartCanvas) {
+        const lastThreeCitasLabels = citasPorMesLabels.slice(-3);
+        const lastThreeCitasData = citasPorMesTotals.slice(-3);
+
+        if (lastThreeCitasLabels.length > 1 && lastThreeCitasData.length > 1) {
+          new Chart(appointmentsChartCanvas.getContext('2d'), {
+            type: 'line',
+            data: {
+              labels: lastThreeCitasLabels,
+              datasets: [{
+                data: lastThreeCitasData,
+                borderColor: colors.warning,
+                backgroundColor: 'rgba(251, 191, 36, 0.1)',
+                tension: 0.4,
+                fill: true,
+                borderWidth: 2,
+                pointRadius: 0
+              }]
             },
-            x: {
-              grid: {
-                display: false
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: { display: false }
+              },
+              scales: {
+                x: { display: false },
+                y: { display: false }
               }
             }
-          }
+          });
+        } else {
+          const currentMonthTotal = {{ $stats['citas']['este_mes'] ?? 0 }};
+          showFallbackMessage(appointmentsChartCanvas, currentMonthTotal, 'yellow', 'este mes');
         }
-      });
-    } else if (monthlyActivityCtx) {
-      monthlyActivityCtx.canvas.parentNode.innerHTML = '<p class="text-center text-gray-500 mt-10">No hay datos de usuarios recientes.</p>';
-    }
-
-    // ─────────────────────────────────────────────────────────────────────
-    // 3) Mini Charts de las tarjetas
-    // ── 3.1) Usuarios Mini Chart
-    const usersChartCanvas = document.getElementById('usersChart');
-    if (usersChartCanvas) {
-      const lastThreeUsuarioLabels = usuarioLabels.slice(-3);
-      const lastThreeUsuariosData = usuarioTotals.slice(-3);
-
-      if (lastThreeUsuarioLabels.length > 1 && lastThreeUsuariosData.length > 1) {
-        new Chart(usersChartCanvas.getContext('2d'), {
-          type: 'line',
-          data: {
-            labels: lastThreeUsuarioLabels,
-            datasets: [{
-              data: lastThreeUsuariosData,
-              borderColor: colors.primary,
-              backgroundColor: 'rgba(99, 102, 241, 0.1)',
-              tension: 0.4,
-              fill: true,
-              borderWidth: 2,
-              pointRadius: 0
-            }]
-          },
-          options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-              legend: { display: false }
-            },
-            scales: {
-              x: { display: false },
-              y: { display: false }
-            }
-          }
-        });
-      } else {
-        const currentMonthTotal = lastThreeUsuariosData[lastThreeUsuariosData.length - 1] || 0;
-        showFallbackMessage(usersChartCanvas, currentMonthTotal, 'indigo', 'este mes');
       }
-    }
 
-    // ── 3.2) Citas Mini Chart
-    const appointmentsChartCanvas = document.getElementById('appointmentsChart');
-    const citasPorMesTotals = @json(array_column($stats['citas']['por_mes'] ?? [], 'total'));
-    const citasPorMesLabels = @json(array_column($stats['citas']['por_mes'] ?? [], 'mes'));
+      // ── 3.3) Progresos Mini Chart
+      const progressChartCanvas = document.getElementById('progressChart');
+      const progresosTotals = @json(array_column($stats['progresos_fisicos']['por_mes'] ?? [], 'total'));
+      const progresosLabels = @json(array_column($stats['progresos_fisicos']['por_mes'] ?? [], 'mes'));
 
-    if (appointmentsChartCanvas) {
-      const lastThreeCitasLabels = citasPorMesLabels.slice(-3);
-      const lastThreeCitasData = citasPorMesTotals.slice(-3);
+      if (progressChartCanvas) {
+        const lastThreeProgresosLabels = progresosLabels.slice(-3);
+        const lastThreeProgresosData = progresosTotals.slice(-3);
 
-      if (lastThreeCitasLabels.length > 1 && lastThreeCitasData.length > 1) {
-        new Chart(appointmentsChartCanvas.getContext('2d'), {
-          type: 'line',
-          data: {
-            labels: lastThreeCitasLabels,
-            datasets: [{
-              data: lastThreeCitasData,
-              borderColor: colors.info,
-              backgroundColor: 'rgba(59, 130, 246, 0.1)',
-              tension: 0.4,
-              fill: true,
-              borderWidth: 2,
-              pointRadius: 0
-            }]
-          },
-          options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-              legend: { display: false }
+        if (lastThreeProgresosLabels.length > 1 && lastThreeProgresosData.length > 1) {
+          new Chart(progressChartCanvas.getContext('2d'), {
+            type: 'line',
+            data: {
+              labels: lastThreeProgresosLabels,
+              datasets: [{
+                data: lastThreeProgresosData,
+                borderColor: colors.secondary,
+                backgroundColor: 'rgba(52, 211, 153, 0.1)',
+                tension: 0.4,
+                fill: true,
+                borderWidth: 2,
+                pointRadius: 0
+              }]
             },
-            scales: {
-              x: { display: false },
-              y: { display: false }
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: { display: false }
+              },
+              scales: {
+                x: { display: false },
+                y: { display: false }
+              }
             }
-          }
-        });
-      } else {
-        const currentMonthTotal = {{ $stats['citas']['este_mes'] ?? 0 }};
-        showFallbackMessage(appointmentsChartCanvas, currentMonthTotal, 'blue', 'este mes');
+          });
+        } else {
+          const currentMonthTotal = {{ $stats['progresos_fisicos']['este_mes'] ?? 0 }};
+          showFallbackMessage(progressChartCanvas, currentMonthTotal, 'teal', 'este mes');
+        }
       }
-    }
-
-    // ── 3.3) Progresos Mini Chart
-    const progressChartCanvas = document.getElementById('progressChart');
-    const progresosTotals = @json(array_column($stats['progresos_fisicos']['por_mes'] ?? [], 'total'));
-    const progresosLabels = @json(array_column($stats['progresos_fisicos']['por_mes'] ?? [], 'mes'));
-
-    if (progressChartCanvas) {
-      const lastThreeProgresosLabels = progresosLabels.slice(-3);
-      const lastThreeProgresosData = progresosTotals.slice(-3);
-
-      if (lastThreeProgresosLabels.length > 1 && lastThreeProgresosData.length > 1) {
-        new Chart(progressChartCanvas.getContext('2d'), {
-          type: 'line',
-          data: {
-            labels: lastThreeProgresosLabels,
-            datasets: [{
-              data: lastThreeProgresosData,
-              borderColor: colors.secondary,
-              backgroundColor: 'rgba(139, 92, 246, 0.1)',
-              tension: 0.4,
-              fill: true,
-              borderWidth: 2,
-              pointRadius: 0
-            }]
-          },
-          options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-              legend: { display: false }
-            },
-            scales: {
-              x: { display: false },
-              y: { display: false }
-            }
-          }
-        });
-      } else {
-        const currentMonthTotal = {{ $stats['progresos_fisicos']['este_mes'] ?? 0 }};
-        showFallbackMessage(progressChartCanvas, currentMonthTotal, 'purple', 'este mes');
-      }
-    }
-  });
-</script>
-
-
-
+    });
+  </script>
 </x-layouts.app>

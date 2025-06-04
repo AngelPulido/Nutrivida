@@ -1,12 +1,12 @@
 {{-- resources/views/dashboard/admin/users/edit.blade.php --}}
 <x-layouts.app title="Editar Usuario" metaDescription="Editar usuario">
   <div class="min-h-screen bg-gray-50 flex">
-    <aside class="w-64 bg-white shadow-sm"><x-layouts.navAdmin /></aside>
+    <aside class="w-64"><x-layouts.navAdmin /></aside>
 
     <main class="flex-1 p-8 overflow-y-auto">
       <div class="max-w-4xl mx-auto space-y-8">
         {{-- Encabezado --}}
-       <div class="flex items-center justify-between">
+        <div class="flex items-center justify-between">
           <div class="flex items-center">
             <a href="{{ route('dashboard.admin.users.index') }}" class="text-gray-500 hover:text-gray-700 transition-colors mr-4">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -16,12 +16,11 @@
             <div>
               <h1 class="text-2xl font-semibold text-gray-800">Usuario {{ $user->nombre }}</h1>
               <div class="mt-1 flex items-center space-x-2">
-                <p class="mt-1 text-sm text-gray-500">Rol actual: <span class="capitalize font-medium text-indigo-600">{{ $user->rol }}</span></p>
-                
+                <p class="mt-1 text-sm text-gray-500">Rol actual: <span class="capitalize font-medium text-green-600">{{ $user->rol }}</span></p>
               </div>
             </div>
           </div>
-          </div>
+        </div>
 
         {{-- Errores de validación --}}
         @if($errors->any())
@@ -54,9 +53,7 @@
           {{-- Datos básicos --}}
           <div class="bg-white rounded-lg shadow border border-gray-200">
             <div class="px-6 py-4 border-b border-gray-200">
-    
               <h2 class="text-lg font-medium text-gray-800">Datos básicos</h2>
-              
               <p class="mt-1 text-sm text-gray-500">Información principal de la cuenta.</p>
             </div>
             <div class="px-6 py-6 space-y-6">
@@ -64,18 +61,18 @@
                 <div>
                   <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre completo *</label>
                   <input type="text" name="nombre" id="nombre" value="{{ old('nombre', $user->nombre) }}" required
-                         class="mt-1 w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm py-2 px-3">
+                         class="mt-1 w-full rounded-md border-gray-300 shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm py-2 px-3">
                 </div>
                 <div>
                   <label for="correo" class="block text-sm font-medium text-gray-700">Correo electrónico *</label>
                   <input type="email" name="correo" id="correo" value="{{ old('correo', $user->correo) }}" required
-                         class="mt-1 w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm py-2 px-3">
+                         class="mt-1 w-full rounded-md border-gray-300 shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm py-2 px-3">
                 </div>
               </div>
               <div>
                 <label for="contraseña" class="block text-sm font-medium text-gray-700">Nueva contraseña</label>
                 <input type="password" name="contraseña" id="contraseña"
-                       class="mt-1 w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm py-2 px-3"
+                       class="mt-1 w-full rounded-md border-gray-300 shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm py-2 px-3"
                        placeholder="Dejar en blanco para no cambiar">
                 <p class="mt-1 text-xs text-gray-500">Mínimo 8 caracteres</p>
               </div>
@@ -93,17 +90,17 @@
                 <div>
                   <label for="telefono" class="block text-sm font-medium text-gray-700">Teléfono</label>
                   <input type="text" name="telefono" id="telefono" value="{{ old('telefono', $perfil->telefono ?? '') }}"
-                         class="mt-1 w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm py-2 px-3">
+                         class="mt-1 w-full rounded-md border-gray-300 shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm py-2 px-3">
                 </div>
                 <div>
                   <label for="edad" class="block text-sm font-medium text-gray-700">Edad</label>
                   <input type="number" name="edad" id="edad" value="{{ old('edad', $perfil->edad ?? '') }}"
-                         class="mt-1 w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm py-2 px-3">
+                         class="mt-1 w-full rounded-md border-gray-300 shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm py-2 px-3">
                 </div>
                 <div>
                   <label for="genero" class="block text-sm font-medium text-gray-700">Género</label>
                   <select id="genero" name="genero"
-                          class="mt-1 w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm py-2 px-3">
+                          class="mt-1 w-full rounded-md border-gray-300 shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm py-2 px-3">
                     <option value="">Seleccionar...</option>
                     <option value="masculino" {{ (old('genero', $perfil->genero ?? '') == 'masculino' ? 'selected' : '') }}>Masculino</option>
                     <option value="femenino" {{ (old('genero', $perfil->genero ?? '') == 'femenino' ? 'selected' : '') }}>Femenino</option>
@@ -115,7 +112,7 @@
               <div>
                 <label for="direccion" class="block text-sm font-medium text-gray-700">Dirección</label>
                 <input type="text" name="direccion" id="direccion" value="{{ old('direccion', $perfil->direccion ?? '') }}"
-                       class="mt-1 w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm py-2 px-3">
+                       class="mt-1 w-full rounded-md border-gray-300 shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm py-2 px-3">
               </div>
 
               @if($user->rol === 'paciente')
@@ -124,7 +121,7 @@
                     <label for="altura_cm" class="block text-sm font-medium text-gray-700">Altura (cm)</label>
                     <div class="mt-1 relative rounded-md shadow-sm">
                       <input type="number" step="0.01" name="altura_cm" id="altura_cm" value="{{ old('altura_cm', $perfil->altura_cm ?? '') }}"
-                             class="w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm py-2 px-3">
+                             class="w-full rounded-md border-gray-300 shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm py-2 px-3">
                       <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                         <span class="text-gray-500 text-sm">cm</span>
                       </div>
@@ -134,7 +131,7 @@
                     <label for="peso_kg" class="block text-sm font-medium text-gray-700">Peso (kg)</label>
                     <div class="mt-1 relative rounded-md shadow-sm">
                       <input type="number" step="0.01" name="peso_kg" id="peso_kg" value="{{ old('peso_kg', $perfil->peso_kg ?? '') }}"
-                             class="w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm py-2 px-3">
+                             class="w-full rounded-md border-gray-300 shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm py-2 px-3">
                       <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                         <span class="text-gray-500 text-sm">kg</span>
                       </div>
@@ -147,7 +144,7 @@
                 <div>
                   <label for="especialidad" class="block text-sm font-medium text-gray-700">Especialidad</label>
                   <input type="text" name="especialidad" id="especialidad" value="{{ old('especialidad', $perfil->especialidad ?? '') }}"
-                         class="mt-1 w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm py-2 px-3">
+                         class="mt-1 w-full rounded-md border-gray-300 shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm py-2 px-3">
                 </div>
               @endif
             </div>
@@ -156,7 +153,7 @@
           {{-- Botones de acción --}}
           <div class="flex justify-end space-x-4 pt-4">
             <button type="submit"
-                    class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
               Guardar cambios
             </button>
           </div>

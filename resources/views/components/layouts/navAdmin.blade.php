@@ -1,6 +1,6 @@
 <x-layouts.app title="Dashboard" metaDescription="Accede de forma segura a tu cuenta NutriVida para gestionar planes nutricionales, citas y más. Inicia sesión con tu correo y contraseña.">
    <!-- component -->
-<body class="font-poppins antialiased">
+<body class="font-poppins antialiased bg-gray-50">
     <div
       id="view"
       class="w-screen flex flex-row h-screen"
@@ -8,7 +8,7 @@
     >
       <button
         @click="sidenav = true"
-        class="p-2 border-2 bg-white rounded-md border-gray-200 shadow-lg text-gray-500 focus:bg-teal-500 focus:outline-none focus:text-white absolute top-0 left-0 sm:hidden"
+        class="p-2 border-2 bg-white rounded-md border-green-200 shadow-lg text-gray-500 focus:bg-green-500 focus:outline-none focus:text-white absolute top-0 left-0 sm:hidden"
       >
         <svg
           class="w-5 h-5 fill-current"
@@ -31,31 +31,31 @@
       >
         <div class="space-y-6 md:space-y-10 mt-10">
           <h1 class="font-bold text-4xl text-center md:hidden">
-            D<span class="text-teal-600">.</span>
+            N<span class="text-green-500">.</span>
           </h1>
           <h1 class="hidden md:block font-bold text-sm md:text-xl text-center">
-            NutriVida<span class="text-teal-600">.</span>
+            NutriVida<span class="text-green-500">.</span>
           </h1>
           <div id="profile" class="space-y-3">
             <img
               src="https://images.unsplash.com/photo-1628157588553-5eeea00af15c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
               alt="Avatar user"
-              class="w-10 md:w-16 rounded-full mx-auto"
+              class="w-10 md:w-16 rounded-full mx-auto border-2 border-green-200"
             />
             <div>
               <h2
-                id="user-name" class="font-medium text-xs md:text-sm text-center text-teal-500">
+                id="user-name" class="font-medium text-xs md:text-sm text-center text-green-500">
               </h2>
               <p id="user-rol" class="text-xs text-gray-500 text-center">Administrator</p>
             </div>
           </div>
           <div
-            class="flex border-2 border-gray-200 rounded-md focus-within:ring-2 ring-teal-500"
+            class="flex border-2 border-green-200 rounded-md focus-within:ring-2 ring-green-500"
           >
             <input
               type="text"
               class="w-full rounded-tl-md rounded-bl-md px-2 py-3 text-sm text-gray-600 focus:outline-none"
-              placeholder="Search"
+              placeholder="Buscar recetas, planes..."
             />
             <button
               class="rounded-tr-md rounded-br-md px-2 py-3 hidden md:block"
@@ -77,7 +77,7 @@
           <div id="menu" class="flex flex-col space-y-2">
             <a
               href="{{route('dashboard.admin.profile.update')}}"
-              class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:text-base rounded-md transition duration-150 ease-in-out"
+              class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-green-500 hover:text-white hover:text-base rounded-md transition duration-150 ease-in-out"
             >
               <svg
                 class="w-6 h-6 fill-current inline-block"
@@ -89,11 +89,11 @@
                   d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
                 ></path>
               </svg>
-              <span class="">Profile</span>
+              <span>Perfil</span>
             </a>
             <a
               href="{{route('dashboard.admin.index')}}"
-              class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out"
+              class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-green-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out"
             >
               <svg
                 class="w-6 h-6 fill-current inline-block"
@@ -105,11 +105,11 @@
                   d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V9.236a1 1 0 00-1.447-.894l-4 2a1 1 0 00-.553.894V17zM15.211 6.276a1 1 0 000-1.788l-4.764-2.382a1 1 0 00-.894 0L4.789 4.488a1 1 0 000 1.788l4.764 2.382a1 1 0 00.894 0l4.764-2.382zM4.447 8.342A1 1 0 003 9.236V15a1 1 0 00.553.894l4 2A1 1 0 009 17v-5.764a1 1 0 00-.553-.894l-4-2z"
                 ></path>
               </svg>
-              <span class="">User Management</span>
+              <span>Gestión de Usuarios</span>
             </a>
             <a
               href="{{ route('dashboard.admin.statistics') }}"
-              class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out"
+              class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-green-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out"
             >
               <svg
                 class="w-6 h-6 fill-current inline-block"
@@ -121,7 +121,7 @@
                   d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V9.236a1 1 0 00-1.447-.894l-4 2a1 1 0 00-.553.894V17zM15.211 6.276a1 1 0 000-1.788l-4.764-2.382a1 1 0 00-.894 0L4.789 4.488a1 1 0 000 1.788l4.764 2.382a1 1 0 00.894 0l4.764-2.382zM4.447 8.342A1 1 0 003 9.236V15a1 1 0 00.553.894l4 2A1 1 0 009 17v-5.764a1 1 0 00-.553-.894l-4-2z"
                 ></path>
               </svg>
-              <span class="">System Statistics</span>
+              <span>Estadísticas</span>
             </a>
           </div>
         </div>
