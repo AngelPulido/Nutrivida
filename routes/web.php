@@ -49,7 +49,7 @@ Route::prefix('/dashboard/Administrador')
          Route::get('/miperfil', [ProfileController::class, 'myProfile'])
               ->defaults('role', 'admin')
               ->name('dashboard.admin.miperfil');
-          Route::get('/admin/estadisticas', [StatisticsController::class, 'index'])
+          Route::get('/estadisticas', [StatisticsController::class, 'index'])
                ->defaults('role', 'admin')
               ->name('dashboard.admin.statistics');
 });
